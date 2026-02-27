@@ -6,9 +6,11 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 public class AuthResponseDto {
+    private String token;
     private String message;
 
-    public AuthResponseDto(){
+    public AuthResponseDto(String token){
+        this.token = token;
         this.message = "Authentication successful";
     }
 }
