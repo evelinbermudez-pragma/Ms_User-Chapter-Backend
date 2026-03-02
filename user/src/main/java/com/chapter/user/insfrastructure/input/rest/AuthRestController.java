@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/user/auth")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthRestController {
 
@@ -24,7 +24,7 @@ public class AuthRestController {
     @PostMapping
     public ResponseEntity<AuthResponseDto> login(@RequestBody @Valid AuthRequestDto authRequestDto) {
         try {
-                log.info("Intento de login para: {}", authRequestDto.getEmail());
+            log.info("Intento de login para: {}", authRequestDto.getEmail());
             AuthResponseDto response = userDetailsImpl.loginUser(authRequestDto);
             log.info("Login exitoso para: {}", authRequestDto.getEmail());
             return ResponseEntity.status(HttpStatus.OK).body(response);

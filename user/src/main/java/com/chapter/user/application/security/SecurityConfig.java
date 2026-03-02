@@ -29,14 +29,15 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(http -> {
                     // EndPoints publicos
-                    http.requestMatchers(HttpMethod.POST, "/user/auth/**", "/usuario/cliente").permitAll();
+                    http.requestMatchers(HttpMethod.POST, "/auth/**", "/client").permitAll();
                     http.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();
-                    http.requestMatchers(HttpMethod.POST, "/usuario/admin").permitAll();
+                    http.requestMatchers(HttpMethod.POST, "/admin").permitAll();
 
                     // EndPoints Privados
-                    http.requestMatchers(HttpMethod.GET, "/usuario/admin/**").hasAuthority("ROLE_1");
-                    http.requestMatchers("/usuario/propietario/**").hasAuthority("ROLE_2");
-                    http.requestMatchers(HttpMethod.GET, "/usuario/cliente/{id}").hasAuthority("ROLE_4");
+                    http.requestMatchers(HttpMethod.GET, "/admin/**").hasAuthority("ROLE_1");
+                    http.requestMatchers(HttpMethod.POST, "/admin/**").hasAuthority("ROLE_1");
+                    http.requestMatchers("/owner/**").hasAuthority("ROLE_2");
+                    http.requestMatchers(HttpMethod.GET, "/client/{id}").hasAuthority("ROLE_4");
 
                     http.anyRequest().authenticated();
                 })

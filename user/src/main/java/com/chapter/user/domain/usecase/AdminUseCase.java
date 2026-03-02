@@ -37,9 +37,8 @@ public class AdminUseCase implements IAdminServicePort {
         user.setPassword(passwordEncodedServicePort.encryptPassword(user.getPassword()));
         userPersistencePort.createUser(user);
     }
-    /*
     @Override
-    public User getOwner(Integer id){
-        return userPersistencePort.getUser(id, rolePersistencePort.getRoleByName("OWNER").getRoleId());
-    }*/
+    public User getOwner(Integer id) {
+        return userPersistencePort.getUser(id , rolePersistencePort.getRoleByName("OWNER").getRoleId());
+    }
 }

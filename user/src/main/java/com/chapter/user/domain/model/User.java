@@ -11,11 +11,21 @@ public class User {
     private String email;
     private Date birthDate;
     private String password;
+    private String token;
     private Integer role;
     public User(){
 
     }
-    public User(Integer id, String name, String lastname, Long document, String phone, String email, Date birthDate, Integer role, String password) {
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public User(Integer id, String name, String lastname, Long document, String phone, String email, Date birthDate, Integer role, String password, String token) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
@@ -25,6 +35,7 @@ public class User {
         this.birthDate = birthDate;
         this.role = role;
         this.password = password;
+        this.token = token;
     }
 
     public Integer getId() {
