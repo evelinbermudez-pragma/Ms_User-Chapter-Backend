@@ -1,6 +1,6 @@
 package com.chapter.user.domain.usecase;
 
-import com.chapter.user.domain.api.IPasswordEncodedServicePort;
+import com.chapter.user.domain.spi.IPasswordEncoderPort;
 import com.chapter.user.domain.exception.IsOlderUserException;
 import com.chapter.user.domain.model.Role;
 import com.chapter.user.domain.model.User;
@@ -32,7 +32,7 @@ class AdminUseCaseTest {
     private IRolePersistencePort rolePersistencePort;
 
     @Mock
-    private IPasswordEncodedServicePort passwordEncodedServicePort;
+    private IPasswordEncoderPort passwordEncodedServicePort;
 
     @InjectMocks
     private AdminUseCase adminUseCase;
@@ -62,7 +62,7 @@ class AdminUseCaseTest {
         cal.add(Calendar.YEAR, -17);
         Date dateOfBirth = cal.getTime();
 
-        User user = new User(null, "John", "Doe", 1234678908L,"+573001234567", "john.doe@example.com" , dateOfBirth,null, "password123" , null);
+        User user = new User(null, "John", "Doe", 123467L,"+573001234567", "john.doe@example.com" , dateOfBirth,null, "password123" , null);
 
         assertThrows(IsOlderUserException.class, () -> adminUseCase.saveOwner(user));
 

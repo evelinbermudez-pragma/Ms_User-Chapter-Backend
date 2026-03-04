@@ -1,10 +1,10 @@
 package com.chapter.user.insfrastructure.security;
 
-import com.chapter.user.domain.api.IPasswordEncodedServicePort;
+import com.chapter.user.domain.spi.IPasswordEncoderPort;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class PasswordEncodedServiceAdapter implements IPasswordEncodedServicePort {
+public class PasswordEncoderAdapter implements IPasswordEncoderPort {
 
     @Override
     public String encryptPassword(String password) {
