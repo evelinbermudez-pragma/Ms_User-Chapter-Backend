@@ -1,11 +1,13 @@
 package com.chapter.user.insfrastructure.configuration;
 
 import com.chapter.user.domain.api.IAdminServicePort;
+import com.chapter.user.domain.api.IClientServicePort;
 import com.chapter.user.domain.api.IOwnerServicePort;
-import com.chapter.user.domain.api.IPasswordEncodedServicePort;
+import com.chapter.user.domain.spi.IPasswordEncoderPort;
 import com.chapter.user.domain.spi.persistence.IRolePersistencePort;
 import com.chapter.user.domain.spi.persistence.IUserPersistencePort;
 import com.chapter.user.domain.usecase.AdminUseCase;
+import com.chapter.user.domain.usecase.ClientUseCase;
 import com.chapter.user.domain.usecase.OwnerUseCase;
 import com.chapter.user.insfrastructure.jpa.adapter.RoleJpaAdapter;
 import com.chapter.user.insfrastructure.jpa.adapter.UserJpaAdapter;
@@ -34,7 +36,7 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public IPasswordEncodedServicePort passwordEncodedServicePort(){
+    public IPasswordEncoderPort passwordEncodedServicePort(){
         return new AuthBycryptAdapter(passwordEncoder());
     }
 
@@ -55,5 +57,9 @@ public class BeanConfiguration {
     @Bean
     public IOwnerServicePort ownerServicePort(){
         return new OwnerUseCase(userPersistencePort(), passwordEncodedServicePort(), rolePersistencePort());
+    }
+    @Bean
+    public IClientServicePort clientUseCase(){
+        return new ClientUseCase(userPersistencePort(), passwordEncodedServicePort(), rolePersistencePort());
     }
 }

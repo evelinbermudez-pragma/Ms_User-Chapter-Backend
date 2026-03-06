@@ -1,6 +1,6 @@
 package com.chapter.user.domain.usecase;
 
-import com.chapter.user.domain.api.IPasswordEncodedServicePort;
+import com.chapter.user.domain.spi.IPasswordEncoderPort;
 import com.chapter.user.domain.model.Role;
 import com.chapter.user.domain.model.User;
 import com.chapter.user.domain.spi.persistence.IRolePersistencePort;
@@ -29,7 +29,7 @@ class OwnerUseCaseTest {
     private IRolePersistencePort rolePersistencePort;
 
     @Mock
-    private IPasswordEncodedServicePort passwordEncodedServicePort;
+    private IPasswordEncoderPort passwordEncodedServicePort;
 
     @InjectMocks
     private OwnerUseCase ownerUseCase;

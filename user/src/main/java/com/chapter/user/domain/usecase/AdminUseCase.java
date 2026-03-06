@@ -1,6 +1,7 @@
 package com.chapter.user.domain.usecase;
 
-import com.chapter.user.domain.api.IPasswordEncodedServicePort;
+
+import com.chapter.user.domain.spi.IPasswordEncoderPort;
 import com.chapter.user.domain.spi.persistence.IRolePersistencePort;
 import com.chapter.user.domain.spi.persistence.IUserPersistencePort;
 import com.chapter.user.domain.api.IAdminServicePort;
@@ -15,12 +16,12 @@ public class AdminUseCase implements IAdminServicePort {
 
     private final IUserPersistencePort userPersistencePort;
     private final IRolePersistencePort rolePersistencePort;
-    private final IPasswordEncodedServicePort passwordEncodedServicePort;
+    private final IPasswordEncoderPort passwordEncodedPort;
 
-    public AdminUseCase(IUserPersistencePort userPersistencePort, IPasswordEncodedServicePort passwordEncodedServicePort, IRolePersistencePort rolePersistencePort) {
+    public AdminUseCase(IUserPersistencePort userPersistencePort, IPasswordEncoderPort passwordEncodedPort, IRolePersistencePort rolePersistencePort) {
         this.userPersistencePort = userPersistencePort;
         this.rolePersistencePort = rolePersistencePort;
-        this.passwordEncodedServicePort = passwordEncodedServicePort;
+        this.passwordEncodedPort = passwordEncodedPort;
     }
 
     @Override
@@ -34,7 +35,7 @@ public class AdminUseCase implements IAdminServicePort {
             throw new IsOlderUserException();
         }
         user.setRole(rolePersistencePort.getRoleByName("OWNER").getRoleId());
-        user.setPassword(passwordEncodedServicePort.encryptPassword(user.getPassword()));
+        user.setPassword(passwordEncodedPort.encryptPassword(user.getPassword()));
         userPersistencePort.createUser(user);
     }
     @Override

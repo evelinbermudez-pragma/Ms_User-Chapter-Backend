@@ -1,11 +1,11 @@
 package com.chapter.user.insfrastructure.configuration;
 
-import com.chapter.user.domain.api.IPasswordEncodedServicePort;
+import com.chapter.user.domain.spi.IPasswordEncoderPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @RequiredArgsConstructor
-public class AuthBycryptAdapter implements IPasswordEncodedServicePort {
+public class AuthBycryptAdapter implements IPasswordEncoderPort {
 
     private final PasswordEncoder passwordEncoder;
 

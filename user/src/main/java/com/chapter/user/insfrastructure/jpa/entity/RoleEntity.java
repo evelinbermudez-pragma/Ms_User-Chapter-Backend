@@ -11,6 +11,6 @@ import lombok.Setter;
 public class RoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer roleRd;
+    private Integer roleId;
     private String name;
 }

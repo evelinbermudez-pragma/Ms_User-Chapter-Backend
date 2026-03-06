@@ -9,6 +9,7 @@ public class User {
     private Long document;
     private String phone;
     private String email;
+    //utilzar LocalDateTime
     private Date birthDate;
     private String password;
     private String token;
